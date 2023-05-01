@@ -1,3 +1,3 @@
-# detect_decode
+# idcode
 
-自动解码器
+交互式检测并解码编码文本。

@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "idcode"
+version = "0.1.0"
+description = "交互式检测并解码编码文本。"
+authors = ["p0ise <changelf@163.com>"]
+readme = "README.md"
+packages = [{include = "idcode"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+decode_detect = "main:main"

@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+import os
 import argparse
 from interactive_decoder import InteractiveDecoder
 from custom_encoding import all_encodings
@@ -18,6 +21,14 @@ def parse_arguments():
 
 if __name__ == '__main__':
     args = parse_arguments()
+
+    if args.file and not os.path.exists(args.file):
+        print(f"文件 '{args.file}' 不存在。")
+        exit(1)
+
+    if not args.file and not args.text:
+        print("请使用-f/--file 或者 -t/--text 参数提供密文。")
+        exit(1)
 
     if args.file:
         encoded_text = read_encoded_text_from_file(args.file)

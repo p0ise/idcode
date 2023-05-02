@@ -270,21 +270,21 @@ class Base32Encoding(Encoding):
 
 
 class HexEncoding(Encoding):
-    pattern = re.compile(r'^(0[xX]|\\[xX])?[0-9a-fA-F]+([-:\s](0[xX]|\\[xX])?[0-9a-fA-F]+)*$')
+    pattern = re.compile(r'^(0[xX]|\\[xX])?[0-9a-fA-F]+([-:,;\s](0[xX]|\\[xX])?[0-9a-fA-F]+)*$')
 
     @staticmethod
     def is_valid_length(encoded_text):
         # 移除常见的前缀和分隔符
         encoded_text = re.sub(r'^(0[xX]|\\[xX])', '', encoded_text)
-        encoded_text = re.sub(r'[-:\s]', '', encoded_text)
+        encoded_text = re.sub(r'[-:,;\s]', '', encoded_text)
         return len(encoded_text) % 2 == 0
 
     @staticmethod
     def decode(encoded_text):
         # 移除常见的前缀和分隔符
-        encoded_text = re.sub(r'^(0[xX]|\\[xX])', '', encoded_text)
-        encoded_text = re.sub(r'[-:\s]', '', encoded_text)
-
+        encoded_text = re.sub(r'(0[xX]|\\[xX])', '', encoded_text)
+        encoded_text = re.sub(r'[-:,;\s]', '', encoded_text)
+        print(encoded_text)
         # 解码hex字符串
         decoded_data = bytes.fromhex(encoded_text)
         return decoded_data.decode('utf-8')
@@ -299,13 +299,22 @@ class Base8Encoding(Encoding):
         return bytes.fromhex(hex(num)[2:]).decode('utf-8')
 
 
-class Base2Encoding(Encoding):
-    pattern = r'^[01]+$'
+class BinaryEncoding(Encoding):
+    pattern = r'^(0b)?([01]{8}[-:,;\s]?)+$'
+
+    @staticmethod
+    def is_valid_length(encoded_text):
+        if encoded_text.startswith('0b'):
+            encoded_text = encoded_text[2:]
+        encoded_text = re.sub(r'[-:,;\s]', '', encoded_text)
+        return len(encoded_text) % 8 == 0
 
     @staticmethod
     def decode(encoded_text):
-        num = int(encoded_text, 2)
-        return bytes.fromhex(hex(num)[2:]).decode('utf-8')
+        if encoded_text.startswith('0b'):
+            encoded_text = encoded_text[2:]
+        encoded_text = re.sub(r'[-:,;\s]', '', encoded_text)
+        return bytearray(int(encoded_text[i:i+8], 2) for i in range(0, len(encoded_text), 8)).decode('utf-8')
 
 
 class URLEncoding(Encoding):
@@ -357,5 +366,5 @@ all_encodings = [
     Base94Encoding, Base92Encoding, Base91Encoding, Base85Encoding, Ascii85Encoding,
     AdobeAscii85Encoding, Z85Encoding, Base64Encoding, Base62Encoding, Base58Encoding,
     Base45Encoding, Base36Encoding, Base32Encoding, HexEncoding, Base8Encoding,
-    Base2Encoding, URLEncoding,  HTMLEncoding, QuotedPrintableEncoding, CoreValuesEncoding
+    BinaryEncoding, URLEncoding,  HTMLEncoding, QuotedPrintableEncoding, CoreValuesEncoding
 ]

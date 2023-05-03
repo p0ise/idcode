@@ -1,4 +1,4 @@
-from preprocessing import remove_prefixes, remove_separators, unify_case
+from .preprocessing import remove_prefixes, remove_separators, unify_case
 
 
 class InteractiveDecoder:

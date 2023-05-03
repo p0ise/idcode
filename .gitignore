@@ -1,4 +1,7 @@
-__pycache__/*
-alphabet_summary.py
-base.py
-test.py
+__pycache__/
+*.pyc
+
+dev/
+*.log
+
+dist/

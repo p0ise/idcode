@@ -17,20 +17,10 @@ idcode 支持多种编码格式，包括：
 
 ## 安装
 
-要使用 idcode，你需要按照以下步骤进行安装：
-
-1. 克隆或下载此仓库。
-2. 确保你已经安装了 Python 3.6 或更高版本。
-3. 在项目目录中，运行以下命令安装依赖：
+从 PyPi 安装：
 
 ```sh
-pip install -r requirements.txt
-```
-
-或者，使用 `poetry` 来安装依赖：
-
-```sh
-poetry install
+pip install idcode
 ```
 
 ## 用法

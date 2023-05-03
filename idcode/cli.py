@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 import os
 import argparse
-from interactive_decoder import InteractiveDecoder
-from custom_encoding import all_encodings
+from .interactive_decoder import InteractiveDecoder
+from .custom_encoding import all_encodings
 
 
 def read_encoded_text_from_file(file_path):
@@ -37,7 +37,7 @@ def get_encoded_text(args):
                 print("密文不能为空，请重新输入。")
 
 
-if __name__ == '__main__':
+def main():
     args = parse_arguments()
 
     encoded_text = get_encoded_text(args)
@@ -50,3 +50,7 @@ if __name__ == '__main__':
     print(decoded_text)
     print("\n经过的解码方式：")
     print(" -> ".join(steps))
+
+
+if __name__ == '__main__':
+    main()

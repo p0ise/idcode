@@ -1,9 +1,12 @@
 [tool.poetry]
 name = "idcode"
-version = "0.1.0"
+version = "0.1.2"
 description = "交互式检测并解码编码文本。"
 authors = ["p0ise <changelf@163.com>"]
+license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/p0ise/idcode"
+repository = "https://github.com/p0ise/idcode"
 packages = [{include = "idcode"}]
 
 [tool.poetry.dependencies]
@@ -15,4 +18,4 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-decode_detect = "main:main"
+idcode = "idcode.cli:main"

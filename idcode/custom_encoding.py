@@ -3,7 +3,7 @@ import base64
 import urllib.parse
 import html
 from quopri import decodestring
-from core_values import values_decode
+from .core_values import values_decode
 import string
 from abc import ABC, abstractmethod
 
@@ -270,7 +270,8 @@ class Base32Encoding(Encoding):
 
 
 class HexEncoding(Encoding):
-    pattern = re.compile(r'^(0[xX]|\\[xX])?[0-9a-fA-F]+([-:,;\s](0[xX]|\\[xX])?[0-9a-fA-F]+)*$')
+    pattern = re.compile(
+        r'^(0[xX]|\\[xX])?[0-9a-fA-F]+([-:,;\s](0[xX]|\\[xX])?[0-9a-fA-F]+)*$')
 
     @staticmethod
     def is_valid_length(encoded_text):

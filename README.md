@@ -9,6 +9,7 @@ idcode 支持多种编码格式，包括：
 - Base85/Base64/Base32
 - Base94/Base92/Base91/Ascii85/AdobeAscii85/Z85/Base58/Base45/Base36/Base8
 - Binary 编码
+- ASCII 编码
 - Hex 编码
 - URL 编码
 - HTML 实体编码

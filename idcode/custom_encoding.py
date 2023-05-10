@@ -363,9 +363,19 @@ class CoreValuesEncoding(Encoding):
         return values_decode(encoded_text)
 
 
+class AsciiEncoding(Encoding):
+    pattern = r'^((0|[1-9]|[1-9]\d|1[0-1]\d|12[0-7])[-:,;\s]?)+$'
+
+    @staticmethod
+    def decode(encoded_text):
+        encoded_text = re.sub(r'[-:,;]', '', encoded_text)
+        decoded_text = ''.join([chr(int(c)) for c in encoded_text.split()])
+        return decoded_text
+
 all_encodings = [
     Base94Encoding, Base92Encoding, Base91Encoding, Base85Encoding, Ascii85Encoding,
     AdobeAscii85Encoding, Z85Encoding, Base64Encoding, Base62Encoding, Base58Encoding,
     Base45Encoding, Base36Encoding, Base32Encoding, HexEncoding, Base8Encoding,
-    BinaryEncoding, URLEncoding,  HTMLEncoding, QuotedPrintableEncoding, CoreValuesEncoding
+    BinaryEncoding, URLEncoding,  HTMLEncoding, QuotedPrintableEncoding, CoreValuesEncoding,
+    AsciiEncoding
 ]

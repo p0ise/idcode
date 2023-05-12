@@ -10,7 +10,7 @@ repository = "https://github.com/p0ise/idcode"
 packages = [{include = "idcode"}]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3"
 
 
 [build-system]

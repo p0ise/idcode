@@ -44,12 +44,7 @@ def main():
 
     decoder = InteractiveDecoder(all_encodings, encoded_text)
 
-    decoded_text, steps = decoder.run()
-
-    print("\n最终解码结果：")
-    print(decoded_text)
-    print("\n经过的解码方式：")
-    print(" -> ".join(steps))
+    decoder.run()
 
 
 if __name__ == '__main__':
